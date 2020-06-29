@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "QuizProject"
+    }
+  },
+  "defaultProject": "QuizProject",
+  "cli": {
+    "analytics": false
+  }
 }
