@@ -1,0 +1,35 @@
+<div class="container">
+    <form [formGroup]='addQuestion' (ngSubmit)="onSubmit()">
+
+        <h3 style="text-align:center">
+            Add Questions
+        </h3>
+
+        <div class="form-group">
+            <!-- Select Quiz -->
+            <label for="quizname">Quiz Name <span class="lblError"></span></label>
+            <div class="controls">
+                <input type="text" id="quizname" placeholder="Select Quiz Name" class="form-control" formControlName="quiz_name">
+                <span>Does not have quiz? <a routerLink='/add-quiz'>Create</a></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <!-- Add Question -->
+            <label for="addquestion">Add Question <span class="lblError"></span></label>
+            <div class="controls">
+                <input type="text" id="addquestion" placeholder="Enter question" class="form-control" formControlName="new_question">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button routerLink='/dashboard' class="btn btn-primary" type="submit" style="width: 15%">Done
+            </button>
+        </div>
+        <div class="form-group">
+            <button routerLink='/add-question' class="btn btn-primary" type="submit" style="width: 15%">Add another question
+            </button>
+        </div>
+
+    </form>
+</div>

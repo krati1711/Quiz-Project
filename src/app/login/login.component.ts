@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../services/admin.service';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { AdminService } from '../services/admin.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private adminService: AdminService) { }
+  constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.adminService.login(this.username, this.password).subscribe(res => {
       console.log(res);
+      this.router.navigate(['dashboard']);
     }, err => {
       console.log(err);
     } );
