@@ -1,35 +1,73 @@
 <div class="container">
-    <form [formGroup]='addQuestion' (ngSubmit)="onSubmit()">
+  <form [formGroup]='addQuestion' (ngSubmit)="onSubmit()">
 
-        <h3 style="text-align:center">
-            Add Questions
-        </h3>
+    <h3 style="text-align:center">
+      Add Questions
+    </h3>
 
-        <div class="form-group">
-            <!-- Select Quiz -->
+    <!-- <div class="mb-3">
+          <select class="custom-select" (change)="changeCity($event)" formControlName="cityName">
+            <option value="">Choose your city</option>
+            <option *ngFor="let city of City" [ngValue]="city">{{city}}</option>
+          </select>
+
+          // error block
+          <div class="invalid-feedback" *ngIf="isSubmitted && cityName.errors?.required">
+            <sup>*</sup>Please enter your city name
+          </div>
+        </div>   -->
+
+     <div class="form-group">
+            <label for="quizname">Quiz Name <span class="lblError"></span></label>
+            <div class="controls">
+              <select class="custom-select" (change)="changeQuiz($event)" formControlName="quiz_name">
+                <!-- <option value="">Select Quiz</option> -->
+                <option *ngFor="let quiz of quizList" [ngValue]="quiz._id">{{quiz.quizName}}</option>
+              </select>
+                <span>Does not have quiz? <a routerLink='/add-quiz'>Create</a></span>
+            </div>
+        </div>
+
+        <!-- <div class="form-group">
+            //select quiz
             <label for="quizname">Quiz Name <span class="lblError"></span></label>
             <div class="controls">
                 <input type="text" id="quizname" placeholder="Select Quiz Name" class="form-control" formControlName="quiz_name">
                 <span>Does not have quiz? <a routerLink='/add-quiz'>Create</a></span>
             </div>
-        </div>
+        </div> -->
 
-        <div class="form-group">
-            <!-- Add Question -->
-            <label for="addquestion">Add Question <span class="lblError"></span></label>
-            <div class="controls">
-                <input type="text" id="addquestion" placeholder="Enter question" class="form-control" formControlName="new_question">
-            </div>
-        </div>
+    <div class="form-group">
+      <!-- Add Question -->
+      <label for="addquestion">Add Question <span class="lblError"></span></label>
+      <div class="controls">
+        <input type="text" id="addquestion" placeholder="Enter question" class="form-control"
+          formControlName="new_question">
+      </div>
 
-        <div class="form-group">
-            <button routerLink='/dashboard' class="btn btn-primary" type="submit" style="width: 15%">Done
-            </button>
-        </div>
-        <div class="form-group">
-            <button routerLink='/add-question' class="btn btn-primary" type="submit" style="width: 15%">Add another question
-            </button>
-        </div>
+      <!-- Add correct answer -->
+      <label for="correctanswer">Correct Answer <span class="lblError"></span></label>
+      <div class="controls">
+        <input type="text" id="correctanswer" placeholder="Enter Correct Answer" class="form-control"
+          formControlName="correct_answer">
+      </div>
 
-    </form>
+      <!-- Add wrong answer -->
+      <label for="wronganswer">Wrong Answer <span class="lblError"></span></label>
+      <div class="controls">
+        <input type="text" id="wronganswer" placeholder="Enter Wrong Answer" class="form-control"
+          formControlName="wrong_answer">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button routerLink='/dashboard' class="btn btn-primary" type="button" style="width: 15%">Done
+      </button>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit" style="width: 15%">Add another question
+      </button>
+    </div>
+
+  </form>
 </div>

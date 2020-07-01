@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { AdminService } from '../../services/admin.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-add-quiz',
@@ -9,7 +11,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class AddQuizComponent implements OnInit {
 
   createQuiz: FormGroup;
-  constructor() { }
+  constructor(private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
     this.createQuiz = new FormGroup({
@@ -20,6 +22,15 @@ export class AddQuizComponent implements OnInit {
   onSubmit() {
     console.log(this.createQuiz);
     console.log(this.createQuiz.get('quiz_name').value);
+    this.adminService.addQuiz(this.createQuiz.get('quiz_name').value).subscribe(result => {
+      console.log(result);
+      this.router.navigate(['/add-question']);
+    },
+    err => {
+      console.log(err);
+    });
+
     }
+
 
 }
