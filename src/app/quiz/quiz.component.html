@@ -1,0 +1,23 @@
+<div class="container">
+    <div *ngIf="ready == true">
+
+        <div class="badge badge-info">Question {{pager.index + 1}} of {{pager.count}}.</div>
+        <div *ngIf="duration" class="badge badge-info float-right">Time: {{ellapsedTime}} / {{duration}}</div>
+
+        <div class="font-weight-normal" id="question">
+            <h3 class="col-12"><span>{{currentQuestion.quest}}</span></h3>
+        </div>
+        <div class="row text-left options">
+            <div class="col-6" *ngFor="let option of currentQuestion.options; let i = index">
+                <div class="option">
+                    <label class="font-weight-normal" [attr.for]="option">
+                        <!-- <input id="{{option.id}}" type="checkbox" [(ngModel)]="option.selected" (change)="onSelect(question, option);" /> {{option.name}} -->
+                        <input type="radio" (change)="onSelect(option)" name="answeroptions" /> {{option}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <button type="button" id="id1" class="btn btn-primary col-3" (click)="nextQuestion()"> NEXT QUESTION</button>
+        <button type="button" class="btn btn-info col-2" (click)="getTime()"> Clear</button>
+    </div>
+</div>

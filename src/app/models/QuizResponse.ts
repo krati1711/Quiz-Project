@@ -1,15 +1,16 @@
 import { EachResponse } from './EachResponse';
 export class QuizResponse {
-    quizid: String;
-    userEmail: String;
+    quizid: string;
+    username: string
     EachResponses: EachResponse[] = [];
 
-    constructor(quizid: String, userEmail: String) {
+    constructor(quizid: string, username: string) {
         this.quizid = quizid;
-        this.userEmail = userEmail;
+        this.username = username;
     }
 
     addResponse(EachResponse: any) {
         this.EachResponses.push = EachResponse;
+        console.log('response ke andar' + EachResponse.chosenAnswer);
     }
 }

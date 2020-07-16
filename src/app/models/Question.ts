@@ -1,10 +1,10 @@
 export class Question{
-    id: String;
-    quest: String;
-    options: Array<String>;
-    answer: String;
+    id: string;
+    quest: string;
+    options: Array<string>;
+    answer: string;
 
-    constructor(id: String, quest: String, options: Array<String>, answer: String) {
+    constructor(id: string, quest: string, options: Array<string>, answer: string) {
         this.id = id;
         this.quest = quest;
         this.options = options;
