@@ -28,11 +28,26 @@ export class UserService {
   }
   
   loginUser(username:string ): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/loginUser',{name: username}, options);
+    return this.http.post<any>('http://localhost:3000/loginUser', {name: username}, options);
   }
 
   registerResponse(response: QuizResponse): Observable<any> {
     console.log(response);
-    return this.http.post<any>('http://localhost:3000/registerResponse',{EachResponses: response.EachResponses, username: response.username, quizid: response.quizid}, options);
+    return this.http.post<any>('http://localhost:3000/registerResponse', {EachResponses: response.EachResponses, username: response.username, quizid: response.quizid}, options);
+  }
+  
+  storeAccess(token: any) {
+    localStorage.setItem('hasAccess','true');
+  }
+
+  hasAccess(): boolean {
+    const access = localStorage.getItem('hasAccess');
+    return (access === 'true') ?  true :  false;
+  }
+
+  removeAccess() {
+    if (localStorage.getItem('hasAccess')) {
+      localStorage.removeItem('hasAccess');
+    }
   }
 }

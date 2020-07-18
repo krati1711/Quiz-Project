@@ -103,6 +103,7 @@ export class StartComponent implements OnInit {
 
         tempstatus = res.mystatuscode;
         if (tempstatus === 1){
+          this.userService.storeAccess(res.token);
           localStorage.setItem('userdetails', JSON.stringify({username: res.username, quizid: this.loginForm.value.quizname}));
         }
 
