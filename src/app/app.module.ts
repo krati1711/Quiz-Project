@@ -9,14 +9,17 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddQuizComponent } from './add/add-quiz/add-quiz.component';
 import { AddQuestionComponent } from './add/add-question/add-question.component';
+import { httpInterceptorProviders } from './http-interceptors/index';
+import { DeleteComponent } from './delete/delete.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     DashboardComponent,
     AddQuizComponent,
-    AddQuestionComponent
+    AddQuestionComponent,
+    DeleteComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,10 @@ import { AddQuestionComponent } from './add/add-question/add-question.component'
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    // Title,
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

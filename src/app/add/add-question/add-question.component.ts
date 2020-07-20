@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Quiz } from '../../../models/Quiz';
 import { AdminService } from '../../services/admin.service';
 
+
 @Component({
   selector: 'app-add-question',
   templateUrl: './add-question.component.html',
@@ -47,10 +48,10 @@ onSubmit() {
     this.adminService.addQuestion(this.addQuestion.get('new_question').value, this.addQuestion.get('correct_answer').value, this.addQuestion.get('wrong_answer').value, this.quizId)
       .subscribe( res => {
         console.log(res);
-        this.addQuestion.get('new_question').setValue("");
-        this.addQuestion.get('correct_answer').setValue("");
-        this.addQuestion.get('wrong_answer').setValue("");
-        this.addQuestion.get('quiz_name').setValue("");
+        // this.addQuestion.get('new_question').setValue("");
+        // this.addQuestion.get('correct_answer').setValue("");
+        // this.addQuestion.get('wrong_answer').setValue("");
+        // this.addQuestion.get('quiz_name').setValue("");
       },
       err => {
         console.log(err);
