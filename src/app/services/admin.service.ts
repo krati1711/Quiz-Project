@@ -62,7 +62,6 @@ export class AdminService {
   }
 
   getAllQuiz(): Observable<any> {
-    console.log("'i'm in service");
-    return this.httpClient.get<any>('http://localhost:3000/getAllQuiz');
+    return this.httpClient.get<any>('http://localhost:3000/getAllQuiz', optionss);
   }
 }

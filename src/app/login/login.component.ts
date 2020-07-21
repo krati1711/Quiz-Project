@@ -37,14 +37,18 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   returnUrl: string;
-  error: {};
+  error = {
+    errorCode: '',
+    errorMessage: '',
+    errorPresent: false
+  };
   loginError: string;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService
-    ) { }
+    ) {}
 
   ngOnInit() {
 
@@ -64,7 +68,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.authService.login(this.username.value, this.password.value).subscribe((data) => {
-      console.log("data- "+this.authService.redirectUrl);
        if (this.authService.isLoggedIn) {
           const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'http://localhost:4200/login';
           this.router.navigate(['/dashboard']);
@@ -73,8 +76,10 @@ export class LoginComponent implements OnInit {
         }
       },
       error => {
-        console.log('mai login se aaya');
-        this.error = error;
+        this.error.errorCode = error.errorCode;
+        this.error.errorMessage = error.errorMessage;
+        this.error.errorPresent = true;
+        alert(this.error.errorMessage);
       }
     );
   }

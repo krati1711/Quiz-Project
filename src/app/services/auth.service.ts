@@ -37,30 +37,22 @@ export class AuthService {
     return this.httpClient.post<any>('http://localhost:3000/login', JSON.stringify({email: username, password: password}), options)
     .pipe(map(user => {
         if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user.userId));
-          localStorage.setItem('currentToken', JSON.stringify(user.token));
+          localStorage.setItem('currentUserToken', user.token);
         }
-      }),
-      catchError(this.handleError)
+      })
     );
   }
 
   isLoggedIn() {
-    if (localStorage.getItem('currentUser') && localStorage.getItem('currentUser')) {
-      const decoded = jwt_decode(JSON.parse(localStorage.getItem('currentToken')));
-      const username = JSON.parse(localStorage.getItem('currentUser'));
-      // console.log(decoded ,' ', username);
-      if (decoded.email === username) {
-        return true;
-      }
-      return false;
+    if (localStorage.getItem('currentUserToken')) {
+      return true;
     }
     return false;
   }
 
   getAuthorizationToken() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    return currentUser.token;
+    const currentUserToken = localStorage.getItem('currentUserToken');
+    return currentUserToken;
   }
 
   logout() {

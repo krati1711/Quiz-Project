@@ -12,7 +12,7 @@ import { AdminService } from '../services/admin.service';
 })
 export class DashboardComponent implements OnInit {
   addQuestion: FormGroup;
-  quizList: Quiz[] = [];
+  quizList: any[] = [];
   quizId: string = "";
   studentList: any[] = [];
   userDetail = null;
@@ -29,11 +29,12 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
 
     this.adminService.getAllQuiz().subscribe(result => {
-      console.log(" are uqestions prsent -" + result);
       this.quizList = result.quizes;
+      this.quizId = this.quizList[0]._id;
     },
     err => {
       console.log(err);
+      alert(err.errorMessage);
     });
   }
 
@@ -52,6 +53,7 @@ export class DashboardComponent implements OnInit {
     }
     ,err => {
       alert('Error getting Students from Database');
+      alert(err.errorMessage);
     },
     () => {
       this.doWeHaveStudents = true;
@@ -72,6 +74,7 @@ export class DashboardComponent implements OnInit {
       },
        err => {
          alert('Something wrong in fetching response of a particular student.');
+         alert(err.errorMessage);
        },
        () => {
          this.doWeHaveResponse = true;
