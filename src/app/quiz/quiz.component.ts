@@ -65,7 +65,6 @@ export class QuizComponent implements OnInit, OnDestroy {
       this.pager.count = result.quizes.length;
     },
       err => {
-        console.log(err);
         if (err.status === 403) {
           console.log("403 error fetching questions");
         }
@@ -92,21 +91,18 @@ export class QuizComponent implements OnInit, OnDestroy {
     let finishQuiz = false;
     // if any option selected
     if (this.ifSelectedAny) {
-      console.log('kuch to hua hai');
       // this.response.addResponse(new EachResponse(this.currentQuestion.id, this.tempAnswer, this.getTime(), true));
-      this.response.EachResponses.push(new EachResponse(this.currentQuestion.id, this.tempAnswer, this.getTime(), true));
+      this.response.EachResponses.push(new EachResponse(this.currentQuestion.id,this.currentQuestion.quest, this.tempAnswer, this.currentQuestion.answer, this.getTime(), true));
     } else {
-      console.log('kuch nahi hua hai');
       // this.response.addResponse(new EachResponse(this.currentQuestion.id, '', this.getTime(), false));
-      this.response.EachResponses.push(new EachResponse(this.currentQuestion.id, '', this.getTime(), false));
+      this.response.EachResponses.push(new EachResponse(this.currentQuestion.id, this.currentQuestion.quest, '', this.currentQuestion.answer, this.getTime(), false));
     }
     this.ifSelectedAny = false;
 
     this.pager.index++;
     if (this.pager.index === this.pager.count) {
       // this is when all questions end
-      const str = JSON.stringify(this.response);
-      console.log('All questions done ' + str);
+      clearInterval(this.timer);
       this.userService.registerResponse(this.response)
         .subscribe(res => {
           this.router.navigate(['/finish']);
@@ -137,7 +133,6 @@ export class QuizComponent implements OnInit, OnDestroy {
     const min: number = +timeArray[0];
     const sec: number = +timeArray[1];
     const totalSec = 10 - (min * 60 + sec);
-    console.log('time-' + totalSec);
     return totalSec;
   }
 

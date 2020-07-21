@@ -35,7 +35,7 @@ export class StartComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       age: ['', [Validators.required, Validators.min(1), Validators.max(20)]],
       gender: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: [''],
       quizname: ['', [Validators.required]]
     });
 

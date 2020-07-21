@@ -26,7 +26,7 @@ import { MyInterceptor } from './interceptor/MyInterceptor';
     FormsModule
   ],
   providers: [
-     { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true, useValue: undefined}
+     { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
