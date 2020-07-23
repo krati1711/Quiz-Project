@@ -45,7 +45,7 @@ export class AdminService {
     return this.httpClient.post<any>('http://localhost:3000/addQuiz', {quizName: quizName}, optionss);
   }
 
-  addQuestion(question: String, correct: String, incorrect: String, quizId: String): Observable<any> {
+  addQuestion(question: String, correct: String, incorrect: String, quizId: string): Observable<any> {
     return this.httpClient.post<any>('http://localhost:3000/addQuestion', {question: question, correct_answer: correct, wrong_answer: incorrect, quizId: quizId}, optionss);
   }
 

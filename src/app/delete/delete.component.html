@@ -53,9 +53,9 @@
       <div class="form-group">
         <label for="quizname">Select Quiz <span class="lblError"></span></label>
         <div class="controls">
-          <select class="custom-select" (change)="changeQuiz($event)" formControlName="quiz_name">
+          <select class="custom-select" (change)="changeQuiz($event)">
             <!--<option value="">Choose your quiz</option>-->
-            <option *ngFor="let quiz of quizList" [ngValue]="quiz._id">{{quiz.quizName}}</option>
+            <option *ngFor="let quiz of quizList" [value]="quiz._id">{{quiz.quizName}}</option>
           </select>
         </div>
     </div>

@@ -1,4 +1,4 @@
 export class Quiz {
-  _id: String;
-  quizName: String;
+  _id: string;
+  quizName: string;
 }

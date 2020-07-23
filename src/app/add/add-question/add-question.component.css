@@ -12,6 +12,10 @@ padding-top: 15px;
 margin-top: -20px;
 }
 
+.custom-select {
+  font-size: 1.5rem;
+}
+
 .logout-btn-class{
   position: absolute;
   right: 20px;

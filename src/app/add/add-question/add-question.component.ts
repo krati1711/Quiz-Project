@@ -13,7 +13,7 @@ import { AdminService } from '../../services/admin.service';
 export class AddQuestionComponent implements OnInit {
   addQuestion: FormGroup;
   quizList: Quiz[] = [];
-  quizId: String = "";
+  quizId: string = "";
   constructor(private adminService: AdminService) {
     adminService.getAllQuiz().subscribe(res => {
       console.log(res);
@@ -45,9 +45,12 @@ export class AddQuestionComponent implements OnInit {
   }
 
 onSubmit() {
+  console.log(this.addQuestion.get('new_question').value,this.addQuestion.get('correct_answer').value , this.addQuestion.get('wrong_answer').value, this.quizId);
     this.adminService.addQuestion(this.addQuestion.get('new_question').value, this.addQuestion.get('correct_answer').value, this.addQuestion.get('wrong_answer').value, this.quizId)
       .subscribe( res => {
-        console.log(res);
+        // console.log(res);
+        this.addQuestion.reset();
+        alert('Question added');
         // this.addQuestion.get('new_question').setValue("");
         // this.addQuestion.get('correct_answer').setValue("");
         // this.addQuestion.get('wrong_answer').setValue("");

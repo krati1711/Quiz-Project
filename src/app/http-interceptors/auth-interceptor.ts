@@ -16,12 +16,15 @@ export class AuthInterceptor implements HttpInterceptor {
         const isLoggedIn = this.authService.isLoggedIn();
         const token = this.authService.getAuthorizationToken();
         if (isLoggedIn) {
-            
+
             req = req.clone({
                 setHeaders:
                     { Authorization: `Bearer ${token}` }
                 }
             );
+        }
+        else {
+          this.authService.logout();
         }
 
         return next.handle(req);

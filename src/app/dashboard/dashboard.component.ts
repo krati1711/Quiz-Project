@@ -43,7 +43,9 @@ export class DashboardComponent implements OnInit {
   }
 
   changeQuiz(e) {
-    this.quizId = e.target.value.split(": ")[1];
+    // console.log('target -' + e.target.value);
+    // this.quizId = e.target.value.split(": ")[1];
+    this.quizId = e.target.value;
   }
 
   getStudents() {
