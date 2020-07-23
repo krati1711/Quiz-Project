@@ -59,6 +59,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   loadQuestions(quizid: string) {
     this.quizService.getQuestionPerQuiz(quizid).subscribe(result => {
       result.quizes.forEach((element: any) => {
+        element.options = this.shuffleOptions(element.options);
         this.questions.push(new Question(element._id, element.question, element.options, element.answer));
       });
       this.currentQuestion = this.questions[0];
@@ -108,7 +109,7 @@ export class QuizComponent implements OnInit, OnDestroy {
           this.router.navigate(['/finish']);
           this.ngOnDestroy();
           finishQuiz = true;
-        }, 
+        },
         err => {
           console.log("Error in registering response - " + err);
         });
@@ -151,6 +152,25 @@ export class QuizComponent implements OnInit, OnDestroy {
   onSelect(option: any) {
     this.tempAnswer = option;
     this.ifSelectedAny = true;
+  }
+
+  shuffleOptions(options:string[]) {
+    var currentIndex = options.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = options[currentIndex];
+    options[currentIndex] = options[randomIndex];
+    options[randomIndex] = temporaryValue;
+  }
+
+  return options;
   }
 
 }

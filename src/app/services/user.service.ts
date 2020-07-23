@@ -26,16 +26,16 @@ export class UserService {
   registerUser(email:string , name:string, age:string, gender:string): Observable<any> {
     return this.http.post<any>('http://localhost:3000/registerUser',{email: email, name: name, age: age, gender: gender}, options);
   }
-  
-  loginUser(username:string ): Observable<any> {
-    return this.http.post<any>('http://localhost:3000/loginUser', {name: username}, options);
+
+  loginUser(username:string, quizid: string ): Observable<any> {
+    return this.http.post<any>('http://localhost:3000/loginUser', {name: username, quizid: quizid}, options);
   }
 
   registerResponse(response: QuizResponse): Observable<any> {
     console.log(response);
     return this.http.post<any>('http://localhost:3000/registerResponse', {EachResponses: response.EachResponses, username: response.username, quizid: response.quizid}, options);
   }
-  
+
   storeAccess(token: any) {
     localStorage.setItem('hasAccess','true');
   }

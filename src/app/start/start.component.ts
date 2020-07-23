@@ -12,12 +12,15 @@ import { UserService } from '../services/user.service';
 })
 export class StartComponent implements OnInit {
 
+  signInpage = true;
   registerForm!: FormGroup;
   loginForm!: FormGroup;
   registersubmitted = false;
   loginsubmitted = false;
   quizList: Quiz[] = [];
   quizId = '';
+
+  hasUsername = '';
 
   constructor(private formBuilder: FormBuilder, private adminService: AdminService, private router: Router, private userService: UserService) {
     adminService.getAllQuiz().subscribe(res => {
@@ -36,7 +39,7 @@ export class StartComponent implements OnInit {
       age: ['', [Validators.required, Validators.min(1), Validators.max(20)]],
       gender: ['', Validators.required],
       email: [''],
-      quizname: ['', [Validators.required]]
+      // quizname: ['', [Validators.required]]
     });
 
     this.loginForm = this.formBuilder.group({
@@ -56,12 +59,13 @@ export class StartComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-
+    console.log('email-' + typeof(this.registerForm.value.email));
     let tempuser: string;
     this.userService.registerUser(this.registerForm.value.email, this.registerForm.value.name, this.registerForm.value.age, this.registerForm.value.gender)
       .subscribe(res => {
         tempuser = res.name;
         tempstatus = res.mystatuscode;
+        this.hasUsername = res.uname;
         if (tempstatus === 1){
           localStorage.setItem('userdetails', JSON.stringify({username: res.username, quizid: this.registerForm.value.quizname}));
         }
@@ -77,8 +81,9 @@ export class StartComponent implements OnInit {
             this.registerForm.reset();
           }
           else if (localStorage.getItem('userdetails')) {
-            alert("Your username is - " + tempuser);
-            this.router.navigate(['/quiz']);
+            this.registerForm.reset();
+            alert('Registered Successfully!');
+            // this.router.navigate(['/quiz']);
           }
         });
 
@@ -98,15 +103,18 @@ export class StartComponent implements OnInit {
       return;
     }
 
-    this.userService.loginUser(this.loginForm.value.name)
+    this.userService.loginUser(this.loginForm.value.name, this.loginForm.value.quizname)
       .subscribe(res => {
-
+        console.log('in result - ' +JSON.stringify(res));
         tempstatus = res.mystatuscode;
         if (tempstatus === 1){
           this.userService.storeAccess(res.token);
           localStorage.setItem('userdetails', JSON.stringify({username: res.username, quizid: this.loginForm.value.quizname}));
         }
-
+        else if (tempstatus === 2){
+          alert('You have already given this quiz');
+          this.loginForm.reset();
+        }
       },
         err => {
           console.log('login error-' + err);
@@ -118,9 +126,16 @@ export class StartComponent implements OnInit {
             alert("No such user found. Try Registering first");
             this.loginForm.reset();
           }
-          else if (localStorage.getItem('userdetails')) {
+          else if (localStorage.getItem('userdetails') && tempstatus != 2) {
             this.router.navigate(['/quiz']);
           }
         });
+  }
+
+  togglePage(){
+    this.signInpage = !this.signInpage;
+    if (!this.signInpage) {
+      this.hasUsername = '';
+    }
   }
 }
