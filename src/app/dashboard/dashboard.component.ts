@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit {
     this.doWeHaveResponse = false;
     this.adminService.getStudents(this.quizId).subscribe( res => {
       this.studentList = res.student;
+
     }
     ,err => {
       alert('Error getting Students from Database');
@@ -69,7 +70,7 @@ export class DashboardComponent implements OnInit {
         this.userDetail = res.user;
         this.responses = res.responses;
         this.responses.forEach( x => {
-          if (x.chosenAnswer === x.correctAnswer) {
+          if (x.chosenAnswer.trim() === x.correctAnswer.trim()) {
             this.userScore++;
           }
         });

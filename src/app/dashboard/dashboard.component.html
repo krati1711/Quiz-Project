@@ -112,7 +112,7 @@
             <th scope="row">{{i+1}}</th>
             <td>{{item.question}}</td>
             <td>{{item.timetaken}}</td>
-            <td>{{(item.chosenAnswer == item.correctAnswer) ? 'Correct' : 'Incorrect'}}</td>
+            <td>{{(item.chosenAnswer.trim() == item.correctAnswer.trim()) ? 'Correct' : 'Incorrect'}}</td>
           </tr>
         </tbody>
       </table>
