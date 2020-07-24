@@ -101,6 +101,13 @@ margin-left: 310px;
 .side-menu .brand-name-wrapper .navbar-brand {
   display: inline-block;
 }
+
+.side-menu-container {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+}
+
 /* Slide in animation */
 @-moz-keyframes slidein {
   0% {
@@ -230,4 +237,53 @@ margin-left: 310px;
   float: right;
 } */
 
+}
+button{
+  background-color: #6601d9;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+button:hover{
+  color: white;
+}
+
+.navbar-css{
+  background-color: #6601d9;
+}
+
+.navbar-a-css{
+  color: white;
+}
+
+footer {
+  background-color:#6601d9;
+  color: white;
+  padding: 15px;
+}
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  min-height: 65px;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;}
 }

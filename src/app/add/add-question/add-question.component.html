@@ -2,64 +2,62 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-<nav class="navbar navbar-default navbar-static-top">
-  <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-          <a class="navbar-brand" routerLink='/dashboard'>Admin
-      </a>
-      </div>
-      <div class="logout-btn-class">
-        <a id="logout" href='#'>
-          Logout</a>
-      </div>
+<nav class="navbar navbar-css navbar-static-top">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <a class="navbar-brand" routerLink='/dashboard' class="navbar-a-css" style="font-size: 30px;">Admin
+    </a>
+  </div>
+  <div class="logout-btn-class">
+    <a id="logout" class="navbar-a-css">
+      Logout</a>
   </div>
   <!-- /.container-fluid -->
 </nav>
 
-<div class="container-fluid main-container">
+<div class="container-fluid main-container" style="margin: 20px 0px;">
   <div class="col-md-2 sidebar">
-      <div class="row">
-          <div class="absolute-wrapper"> </div>
-          <!-- Menu -->
-          <div class="side-menu">
-              <nav class="navbar navbar-default" role="navigation">
-                  <!-- Main Menu -->
-                  <div class="side-menu-container">
-                      <ul class="nav navbar-nav">
-                          <li class="active"><a class="no-border-right-plz" routerLink="/dashboard"> Dashboard </a></li>
-                          <li><a routerLink="/add-question"> Add </a></li>
-                          <li><a routerLink="/delete"> Delete </a></li>
-                      </ul>
-                  </div>
-                  <!-- /.navbar-collapse -->
-              </nav>
+    <div class="row">
+      <div class="absolute-wrapper"> </div>
+      <!-- Menu -->
+      <div class="side-menu">
+        <nav class="navbar navbar-default" role="navigation">
+          <!-- Main Menu -->
+          <div class="side-menu-container">
+            <ul class="nav navbar-nav">
+              <li class="active"><a class="no-border-right-plz" routerLink="/dashboard"> Dashboard </a></li>
+              <li><a routerLink="/add-question"> Add </a></li>
+              <li><a routerLink="/delete"> Delete </a></li>
+            </ul>
           </div>
+          <!-- /.navbar-collapse -->
+        </nav>
       </div>
+    </div>
   </div>
-<div class="container">
-  <form [formGroup]='addQuestion' (ngSubmit)="onSubmit()" autocomplete="off">
+  <div class="container">
+    <form [formGroup]='addQuestion' (ngSubmit)="onSubmit()" autocomplete="off">
 
-    <!-- <h3 style="text-align:center">
+      <!-- <h3 style="text-align:center">
       Add Questions
     </h3> -->
-    <div class="col-md-10 content">
-      <div class="panel panel-default">
+      <div class="col-md-10 content">
+        <div class="panel panel-default">
           <div class="panel-heading">
             <strong>ADD QUESTION</strong>
           </div>
-      </div>
+        </div>
 
 
-     <div class="form-group">
-            <label for="quizname">Quiz Name <span class="lblError"></span></label>
-            <div class="controls">
-              <select class="custom-select" (change)="changeQuiz($event)" formControlName="quiz_name">
-                <!-- <option value="">Select Quiz</option> -->
-                <option *ngFor="let quiz of quizList" [ngValue]="quiz._id">{{quiz.quizName}}</option>
-              </select>
-                <span>Does not have quiz? <a routerLink='/add-quiz'>Create</a></span>
-            </div>
+        <div class="form-group">
+          <label for="quizname">Quiz Name <span class="lblError"></span></label>
+          <div class="controls">
+            <select class="custom-select" (change)="changeQuiz($event)" formControlName="quiz_name">
+              <!-- <option value="">Select Quiz</option> -->
+              <option *ngFor="let quiz of quizList" [ngValue]="quiz._id">{{quiz.quizName}}</option>
+            </select>
+            <span>Does not have quiz? <a routerLink='/add-quiz'>Create</a></span>
+          </div>
         </div>
 
         <!-- <div class="form-group">
@@ -71,40 +69,44 @@
             </div>
         </div> -->
 
-    <div class="form-group">
-      <!-- Add Question -->
-      <label for="addquestion">Add Question <span class="lblError"></span></label>
-      <div class="controls">
-        <input type="text" id="addquestion" placeholder="Enter question" class="form-control"
-          formControlName="new_question">
-      </div>
+        <div class="form-group">
+          <!-- Add Question -->
+          <label for="addquestion">Add Question <span class="lblError"></span></label>
+          <div class="controls">
+            <input type="text" id="addquestion" placeholder="Enter question" class="form-control"
+              formControlName="new_question">
+          </div>
 
-      <!-- Add correct answer -->
-      <label for="correctanswer">Correct Answer <span class="lblError"></span></label>
-      <div class="controls">
-        <input type="text" id="correctanswer" placeholder="Enter Correct Answer" class="form-control"
-          formControlName="correct_answer">
-      </div>
+          <!-- Add correct answer -->
+          <label for="correctanswer">Correct Answer <span class="lblError"></span></label>
+          <div class="controls">
+            <input type="text" id="correctanswer" placeholder="Enter Correct Answer" class="form-control"
+              formControlName="correct_answer">
+          </div>
 
-      <!-- Add wrong answer -->
-      <label for="wronganswer">Wrong Answer <span class="lblError"></span></label>
-      <div class="controls">
-        <input type="text" id="wronganswer" placeholder="Enter Wrong Answer" class="form-control"
-          formControlName="wrong_answer">
-      </div>
-    </div>
+          <!-- Add wrong answer -->
+          <label for="wronganswer">Wrong Answer <span class="lblError"></span></label>
+          <div class="controls">
+            <input type="text" id="wronganswer" placeholder="Enter Wrong Answer" class="form-control"
+              formControlName="wrong_answer">
+          </div>
+        </div>
 
-    <!-- <div class="form-group">
+        <!-- <div class="form-group">
       <button routerLink='/dashboard' class="btn btn-primary" type="button" style="width: 15%">Done
       </button>
     </div> -->
-    <div class="form-group">
-      <button class="btn btn-primary" type="submit" style="width: 30%">Add another question
-      </button>
-    </div>
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" style="width: 30%">Add another question
+          </button>
+        </div>
 
+      </div>
+    </form>
   </div>
-  </form>
-</div>
 
 </div>
+
+<footer class="container-fluid text-center">
+  <p>Quiz &copy; Copyright 2020</p>
+</footer>

@@ -3,21 +3,20 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
 
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand" routerLink='/dashboard'>Admin
-			  </a>
-        </div>
-        <div class="logout-btn-class">
-          <a id="logout" href='#'>
-						Logout</a>
-        </div>
-    </div>
+<nav class="navbar navbar-css navbar-static-top">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <a class="navbar-brand" routerLink='/dashboard' class="navbar-a-css" style="font-size: 30px;">Admin
+    </a>
+  </div>
+  <div class="logout-btn-class">
+    <a id="logout" class="navbar-a-css">
+      Logout</a>
+  </div>
+  <!-- /.container-fluid -->
 </nav>
 
-<div class="container-fluid main-container">
+<div class="container-fluid main-container" style="margin: 20px 0px;">
   <div class="col-md-2 sidebar">
       <div class="row">
           <div class="absolute-wrapper"> </div>
@@ -65,8 +64,9 @@
     </div>
 
     </form>
-
-
+  </div>
   </div>
 
-  </div>
+  <footer class="container-fluid text-center">
+    <p>Quiz &copy; Copyright 2020</p>
+  </footer>

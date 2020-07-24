@@ -34,6 +34,7 @@ export class AuthService {
   // }
 
   login(username: string, password: string) {
+    console.log(username, ' ', password);
     return this.httpClient.post<any>('http://localhost:3000/login', JSON.stringify({email: username, password: password}), options)
     .pipe(map(user => {
         if (user && user.token) {
