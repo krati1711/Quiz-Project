@@ -46,20 +46,23 @@ export class DashboardComponent implements OnInit {
     // console.log('target -' + e.target.value);
     // this.quizId = e.target.value.split(": ")[1];
     this.quizId = e.target.value;
+    console.log('quizid changed-' + this.quizId);
   }
 
   getStudents() {
     this.doWeHaveResponse = false;
+    console.log('quizid in getStudent-' + this.quizId)
     this.adminService.getStudents(this.quizId).subscribe( res => {
       this.studentList = res.student;
-
     }
     ,err => {
       alert('Error getting Students from Database');
       alert(err.errorMessage);
     },
     () => {
-      this.doWeHaveStudents = true;
+      if (this.studentList.length !== 0){
+        this.doWeHaveStudents = true;
+      }
     });
   }
 
